@@ -1,10 +1,10 @@
 import React from 'react';
-import UsersTable from './components/UsersTable';
+import Login from './components/Login';
 
 function App() {
     return (
         <div>
-            <UsersTable />
+            <Login />
         </div>
     );
 }

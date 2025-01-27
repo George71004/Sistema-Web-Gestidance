@@ -9,18 +9,37 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Ruta para obtener los usuarios
-app.get('/api/users', async (req, res) => {
+// Endpoint de login
+app.post("/api/login", async (req, res) => {
+    const { email, password } = req.body;
+    
     try {
-        const result = await pool.query('SELECT * FROM "usuario"');
-        res.json(result.rows);
+        // Realizamos la consulta para encontrar al usuario en la base de datos
+        const result = await pool.query('SELECT * FROM "usuario" WHERE correo = $1', [email]);
+        
+        // Verificamos si encontramos un usuario con el correo proporcionado
+        if (result.rows.length > 0) {
+            const user = result.rows[0]; // El primer usuario encontrado
+
+            // Verificamos si la contraseña es correcta
+            if (user.contraseña === password) {
+                // Si las credenciales son correctas, respondemos con un mensaje y un token
+                res.status(200).json({ message: "Login exitoso", token: "fake-jwt-token" });
+            } else {
+                // Si la contraseña es incorrecta, respondemos con un error
+                res.status(401).json({ message: "Credenciales inválidas (contraseña incorrecta)" });
+            }
+        } else {
+            // Si no se encuentra el usuario en la base de datos, respondemos con un error
+            res.status(401).json({ message: "Credenciales inválidas (usuario no encontrado)" });
+        }
     } catch (err) {
-        console.error(err.message);
-        res.status(500).json({ error: 'Error al obtener los usuarios' });
+        console.error("Error en la consulta a la base de datos: ", err.message);
+        res.status(500).json({ error: 'Error al procesar la solicitud' });
     }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${PORT}`);
+// Escuchar en el puerto
+app.listen(3001, () => {
+    console.log("Backend ejecutándose en http://localhost:3001");
 });
