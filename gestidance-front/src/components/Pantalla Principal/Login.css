@@ -1,0 +1,43 @@
+/* Fondo semitransparente en el formulario */
+.login-container {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Fondo blanco con opacidad del 90% */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Activamos la animación cuando el formulario de login se debe mostrar */
+.login-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-background {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Fondo semi-transparente que cubre el fondo */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Para que no cubra el formulario */
+  transition: background-color 0.5s ease-in-out;
+}
+
+/* Efecto de distorsión del fondo */
+.distort-background {
+  filter: blur(5px); /* Agrega un desenfoque al fondo */
+  transition: filter 0.5s ease-in-out;
+}

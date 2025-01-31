@@ -1,0 +1,11 @@
+.informative-section {
+  background-color: #f0f0f0;
+  padding: 20px;
+  margin: 20px;
+}
+
+.informative-content {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}

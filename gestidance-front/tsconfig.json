@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es6", // Especifica la versión de JavaScript a generar
+    "jsx": "react-jsx", // Utiliza la nueva transformación JSX en React 17+
+    "module": "commonjs", // Módulo para el proyecto
+    "moduleResolution": "node", // Cómo TypeScript resuelve los módulos
+    "strict": true, // Activa todas las opciones estrictas de TypeScript
+    "esModuleInterop": true, // Habilita la interoperabilidad entre módulos ES y CommonJS
+    "skipLibCheck": true, // Ignora la verificación de tipos en las bibliotecas
+    "forceConsistentCasingInFileNames": true, // Forzar el uso consistente de mayúsculas en los nombres de archivo
+    "outDir": "./dist", // Directorio de salida para archivos compilados
+    "baseUrl": "./src", // Ruta base para la resolución de módulos
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"]
+    }
+  },
+  "include": [
+    "src/**/*" // Incluir todos los archivos dentro de la carpeta src
+  ],
+  "exclude": [
+    "node_modules", // Excluir la carpeta node_modules
+    "dist" // Excluir la carpeta dist (si existe)
+  ]
+}

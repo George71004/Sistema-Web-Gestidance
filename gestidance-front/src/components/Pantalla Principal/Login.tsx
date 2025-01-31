@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios"; // Importamos AxiosError para el tipo de error
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    // Especificamos el tipo para e
     e.preventDefault();
 
     try {
@@ -19,7 +20,12 @@ export default function Login() {
       localStorage.setItem("token", response.data.token); // Guardar el token
       alert("¡Login exitoso!");
     } catch (err) {
-      setError(err.response?.data?.message || "Error al iniciar sesión");
+      if (axios.isAxiosError(err)) {
+        // Verificamos si es un error de Axios
+        setError(err.response?.data?.message || "Error al iniciar sesión");
+      } else {
+        setError("Error desconocido al iniciar sesión");
+      }
     }
   };
 
@@ -31,7 +37,10 @@ export default function Login() {
         </h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 font-medium mb-2"
+              htmlFor="email"
+            >
               Correo Electrónico
             </label>
             <input
@@ -45,7 +54,10 @@ export default function Login() {
             />
           </div>
           <div className="mb-6">
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 font-medium mb-2"
+              htmlFor="password"
+            >
               Contraseña
             </label>
             <input

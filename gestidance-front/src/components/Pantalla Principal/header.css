@@ -1,0 +1,51 @@
+/* Header.css */
+header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1a1a1a; /* Fondo oscuro */
+  height: 70px; /* Fija la altura del header */
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff; /* Texto blanco */
+  text-align: left; /* Alinea el texto a la izquierda */
+  margin-right: none;
+  margin-left: 10px;
+  /* Espacio entre el texto y el logotipo */
+}
+
+.logo {
+  flex-shrink: 0; /* Evita que el logotipo se reduzca de tamaño */
+  margin-left: none;
+}
+
+.logo img {
+  height: 70px; /* Ajusta este valor para cambiar el tamaño del logotipo */
+}
+
+nav {
+  margin-left: auto; /* Empuja el nav a la derecha */
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex; /* Alinea los elementos de la lista horizontalmente */
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #ffffff; /* Texto blanco */
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
