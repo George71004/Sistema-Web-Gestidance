@@ -22,7 +22,7 @@ const WelcomeMessage = () => {
   return (
     <div className={`welcome-message ${isVisible ? "visible" : ""}`}>
       <h2>Bienvenidos a Compa Talent</h2>
-      <p>Nos alegra que esten aquí</p>
+      <p>Nos alegra que ternte aquí</p>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios, { AxiosError } from "axios"; // Importamos AxiosError para el tipo de error
+import "./Inscripcion.css"; // Asegúrate de que la ruta sea la correcta
+import axios from "axios";
 
 export default function AcademySignup() {
   const [academyName, setAcademyName] = useState("");
@@ -7,6 +8,12 @@ export default function AcademySignup() {
   const [phone, setPhone] = useState("");
   const [location, setLocation] = useState("");
   const [error, setError] = useState("");
+  const [isVisible, setIsVisible] = useState(false); // Estado para mostrar el formulario
+
+  // Activar el formulario con animación
+  const handleShowForm = () => {
+    setIsVisible(true);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,20 +29,19 @@ export default function AcademySignup() {
       console.log(response.data.message); // Mostrar mensaje de éxito
       alert("¡Inscripción exitosa!");
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        // Verificamos si es un error de Axios
-        setError(
-          err.response?.data?.message || "Error al inscribir la academia"
-        );
-      } else {
-        setError("Error desconocido al inscribir la academia");
-      }
+      setError("Error al inscribir la academia");
     }
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md bg-white p-6 rounded-2xl shadow-lg">
+    <div>
+      {/* Fondo oscuro semitransparente */}
+      <div
+        className={`form-background ${isVisible ? "distort-background" : ""}`}
+      ></div>
+
+      {/* Contenedor del formulario */}
+      <div className={`login-container ${isVisible ? "show" : ""}`}>
         <h1 className="text-2xl font-bold text-gray-800 text-center mb-4">
           Inscripción de Academia
         </h1>
@@ -43,8 +49,8 @@ export default function AcademySignup() {
           {/* Nombre de la Academia */}
           <div className="mb-4">
             <label
-              className="block text-gray-700 font-medium mb-2"
               htmlFor="academy-name"
+              className="block text-gray-700 font-medium mb-2"
             >
               Nombre de la Academia
             </label>
@@ -62,8 +68,8 @@ export default function AcademySignup() {
           {/* Correo Electrónico */}
           <div className="mb-4">
             <label
-              className="block text-gray-700 font-medium mb-2"
               htmlFor="email"
+              className="block text-gray-700 font-medium mb-2"
             >
               Correo Electrónico
             </label>
@@ -78,11 +84,11 @@ export default function AcademySignup() {
             />
           </div>
 
-          {/* Número de Teléfono */}
+          {/* Teléfono */}
           <div className="mb-4">
             <label
-              className="block text-gray-700 font-medium mb-2"
               htmlFor="phone"
+              className="block text-gray-700 font-medium mb-2"
             >
               Número de Teléfono
             </label>
@@ -97,11 +103,11 @@ export default function AcademySignup() {
             />
           </div>
 
-          {/* Ubicación de la Academia */}
+          {/* Ubicación */}
           <div className="mb-6">
             <label
-              className="block text-gray-700 font-medium mb-2"
               htmlFor="location"
+              className="block text-gray-700 font-medium mb-2"
             >
               Ubicación
             </label>
@@ -116,10 +122,10 @@ export default function AcademySignup() {
             />
           </div>
 
-          {/* Mensaje de error si lo hay */}
+          {/* Mensaje de error */}
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
-          {/* Botón de enviar */}
+          {/* Botón de inscripción */}
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
@@ -128,6 +134,14 @@ export default function AcademySignup() {
           </button>
         </form>
       </div>
+
+      {/* Botón para mostrar el formulario */}
+      <button
+        onClick={handleShowForm}
+        className="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+      >
+        Abrir Formulario de Inscripción
+      </button>
     </div>
   );
 }

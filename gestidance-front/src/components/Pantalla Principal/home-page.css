@@ -1,0 +1,107 @@
+/* components/Pantalla Principal/HomePage.css */
+
+/* Asegura que cada sección sea del tamaño de la ventana */
+.home-page-content {
+  padding-top: 100vh; /* El contenido comienza después del fondo principal */
+  position: relative; /* Hace que los elementos hijos con absolute se posicionen dentro de este contenedor */
+}
+
+.content-section {
+  width: 100%;
+  height: 100vh; /* Cada sección ocupa el tamaño de la ventana */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Espacio entre secciones */
+  position: relative; /* Añade esto para posicionar elementos hijos con absolute */
+}
+
+/* Sección 2 con fondo personalizado */
+.content-section:nth-child(1) {
+  background-image: url("./Contenedor2.png"); /* Imagen de fondo para la sección 2 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white; /* Para hacer que el texto sea visible sobre un fondo oscuro */
+}
+
+/* Estilo para el mensaje informativo */
+.mensaje-informativo {
+  width: 400px; /* Establece el tamaño del círculo */
+  height: 450px; /* Establece el tamaño del círculo */
+  background-color: rgba(
+    255,
+    145,
+    0,
+    0.8
+  ); /* Fondo con transparencia (0.8 es el nivel de opacidad) */
+  border-radius: 50%; /* Hace que el div sea redondo */
+  color: white; /* Color del texto */
+  padding: 30px; /* Espaciado interno */
+  display: flex; /* Utiliza flexbox para centrar contenido */
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  position: absolute; /* Posición absoluta dentro de la sección */
+  top: 50%; /* Posición vertical (desde el borde superior de la ventana) */
+  left: 80%; /* Centrado horizontalmente */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Mueve el círculo para que se centre completamente */
+  text-align: center; /* Centra el texto */
+  z-index: 10; /* Asegura que el círculo esté por encima de otros elementos */
+  opacity: 0; /* Inicialmente invisible para la animación */
+  animation: slideInRight 1s ease-out forwards,
+    fadeIn 1s 0.5s ease-in-out forwards; /* Añadir animación de deslizamiento y opacidad */
+}
+
+/* Animación para el desplazamiento desde la derecha */
+@keyframes slideInRight {
+  0% {
+    right: -400px; /* Inicia fuera de la pantalla a la derecha */
+  }
+  100% {
+    right: 7%; /* Llega a la posición final */
+  }
+}
+
+/* Animación para el fade-in (desvanecimiento) */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Estilo para el título dentro del círculo */
+.mensaje-informativo h4 {
+  font-size: 3.2rem; /* Ajusta el tamaño del título */
+  margin-bottom: 10px;
+}
+
+/* Estilo para el título dentro del círculo */
+.mensaje-informativo h4 {
+  font-size: 3rem; /* Ajusta el tamaño del título */
+  margin-bottom: 10px;
+}
+
+/* Estilo para el párrafo dentro del círculo */
+.mensaje-informativo p {
+  width: 250px; /* Establece el tamaño del círculo */
+  height: 250px; /* Establece el tamaño del círculo */
+  font-size: 1.3rem; /* Ajusta el tamaño del texto */
+  color: white; /* Asegura que el texto dentro del círculo sea blanco */
+  margin-top: 5px; /* Agrega espacio entre el párrafo y el título */
+  line-height: 1.5; /* Ajusta el espaciado entre las líneas */
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+
+.content-section h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}

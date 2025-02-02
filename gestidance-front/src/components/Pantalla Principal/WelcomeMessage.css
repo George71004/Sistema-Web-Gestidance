@@ -1,21 +1,56 @@
+/* Contenedor del mensaje de bienvenida */
 .welcome-message {
   position: absolute; /* Lo coloca en la parte superior de la pantalla */
-  top: 50%; /* Centrado vertical */
-  left: 50%; /* Centrado horizontal */
+  top: 80%; /* Centrado vertical */
+  left: 30%; /* Centrado horizontal */
   transform: translate(-50%, -50%); /* Ajuste para centrar completamente */
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo completamente transparente */
   color: white; /* Texto blanco */
-  padding: 20px;
-  text-align: center;
+  padding: 30px 40px; /* Más espacio para el texto */
+  text-align: left; /* Alinear todo el texto a la izquierda */
   z-index: 9999; /* Asegura que esté sobre otros elementos */
   font-family: "Arial", sans-serif;
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra suave para darle profundidad */
+  opacity: 0; /* Inicialmente invisible para la animación */
+  animation: slideIn 1s ease-out forwards, fadeIn 1s 0.5s ease-in-out forwards; /* Añadir animación de deslizamiento y opacidad */
 }
 
+/* Animación para el desplazamiento */
+@keyframes slideIn {
+  0% {
+    transform: translate(
+      -150%,
+      -50%
+    ); /* Inicia fuera de la pantalla a la izquierda */
+  }
+  100% {
+    transform: translate(-50%, -50%); /* Llega a la posición centrada */
+  }
+}
+
+/* Animación para el fade-in (desvanecimiento) */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Estilo del título */
 .welcome-message h2 {
   font-size: 3rem; /* Aumentar el tamaño del título */
-  margin-bottom: 10px;
+  margin: 0 0 10px 0; /* Eliminar margen superior y ajustar el margen inferior */
+  font-weight: bold;
+  letter-spacing: 1px; /* Espaciado entre letras para darle un toque más moderno */
+  text-align: left; /* Alinear el título a la izquierda */
 }
 
+/* Estilo del párrafo */
 .welcome-message p {
-  font-size: 2rem; /* Aumentar el tamaño del párrafo */
+  font-size: 1.8rem; /* Tamaño moderado para el párrafo */
+  font-weight: 300; /* Peso más ligero para el texto */
+  text-align: justify; /* Justificar el párrafo */
+  margin: 0; /* Eliminar cualquier margen adicional en el párrafo */
 }

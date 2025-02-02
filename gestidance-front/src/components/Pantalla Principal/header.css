@@ -1,51 +1,78 @@
-/* Header.css */
+/* Estilo general para el header */
 header {
   display: flex;
-  align-items: center;
-  padding: 10px 20px;
+  align-items: center; /* Alinea todos los elementos verticalmente en el centro */
+  padding: 15px 20px;
   background-color: #1a1a1a; /* Fondo oscuro */
   height: 70px; /* Fija la altura del header */
+  justify-content: space-between; /* Distribuye los elementos */
 }
 
+/* Título */
 h1 {
   margin: 0;
   font-size: 24px;
   color: #ffffff; /* Texto blanco */
   text-align: left; /* Alinea el texto a la izquierda */
-  margin-right: none;
-  margin-left: 10px;
-  /* Espacio entre el texto y el logotipo */
+  margin-right: 20px; /* Añadimos un poco de espacio a la derecha */
 }
 
+/* Contenedor del logo */
 .logo {
   flex-shrink: 0; /* Evita que el logotipo se reduzca de tamaño */
-  margin-left: none;
 }
 
+/* Estilo de la imagen del logo */
 .logo img {
   height: 70px; /* Ajusta este valor para cambiar el tamaño del logotipo */
 }
 
+/* Estilo de la barra de navegación */
 nav {
   margin-left: auto; /* Empuja el nav a la derecha */
 }
 
+/* Estilo de la lista de navegación */
 nav ul {
   list-style-type: none;
   display: flex; /* Alinea los elementos de la lista horizontalmente */
   margin: 0;
   padding: 0;
+  align-items: center; /* Asegura que los items se alineen verticalmente */
 }
 
+/* Estilo para cada item de la lista */
 nav ul li {
   margin: 0 10px;
 }
 
+/* Estilo de los enlaces */
 nav ul li a {
   color: #ffffff; /* Texto blanco */
   text-decoration: none;
+  display: flex; /* Usamos flexbox para alineación */
+  align-items: center; /* Alinea verticalmente el texto */
+  height: 100%; /* Hace que el texto ocupe todo el alto disponible */
 }
 
-nav ul li a:hover {
-  text-decoration: underline;
+/* Estilo del botón de login */
+.login-button {
+  background-color: #ff9900e3; /* Color de fondo naranja */
+  color: white; /* Texto blanco */
+  padding: 8px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex; /* Usamos flex para asegurar la alineación */
+  align-items: center; /* Alineación vertical */
+  height: 100%; /* Hace que el botón ocupe todo el alto disponible */
+}
+
+/* Efectos de hover sobre el botón */
+.login-button:hover {
+  background-color: #45a049; /* Color de fondo al hacer hover */
+}
+
+.login-button:focus {
+  outline: none; /* Elimina el borde al hacer clic */
 }

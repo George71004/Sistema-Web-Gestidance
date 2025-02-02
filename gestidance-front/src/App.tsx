@@ -9,6 +9,8 @@ import Header from "./components/Pantalla Principal/header";
 import Login from "./components/Pantalla Principal/Login";
 import Fondo from "./components/Pantalla Principal/Fondo-principal";
 import WelcomeMessage from "./components/Pantalla Principal/WelcomeMessage";
+import HomePage from "./components/Pantalla Principal/home-page"; // Importamos el nuevo HomePage
+import Inscripcion from "./components/Otras pantallas/Inscripcion";
 
 const App = () => {
   return (
@@ -27,15 +29,17 @@ const AppContent = () => {
     <>
       <Header />
 
-      <Fondo isLoginPage={isLoginPage} />
-      {/*Contenido pagina */}
-
-      {/* Mostrar el WelcomeMessage solo en la página de inicio */}
+      {/* Fondo y WelcomeMessage solo en la página de inicio */}
+      {isHomePage && <Fondo isLoginPage={isLoginPage} />}
       {isHomePage && <WelcomeMessage />}
 
       <Routes>
+        <Route path="/inscripcion" element={<Inscripcion />} />{" "}
+        {/* Ruta para Inscripción */}
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<h2>Página de inicio</h2>} />
+        {/* Reemplazamos el contenido de la página de inicio por HomePage */}
+        <Route path="/" element={<HomePage />} />{" "}
+        {/* Aquí cargamos el componente HomePage */}
       </Routes>
     </>
   );
