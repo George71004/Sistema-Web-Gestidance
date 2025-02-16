@@ -3,9 +3,21 @@ header {
   display: flex;
   align-items: center; /* Alinea todos los elementos verticalmente en el centro */
   padding: 15px 20px;
-  background-color: #1a1a1a; /* Fondo oscuro */
-  height: 70px; /* Fija la altura del header */
+  height: 80px; /* Fija la altura del header */
   justify-content: space-between; /* Distribuye los elementos */
+  position: fixed; /* Hace que el header esté fijo en la pantalla */
+  top: 0; /* Lo fija en la parte superior */
+  width: 100%; /* Asegura que el header ocupe todo el ancho de la pantalla */
+  z-index: 1000; /* Asegura que el header esté sobre otros elementos */
+  transition: background-color 0s;
+}
+
+.header-transparent {
+  background-color: #1a1a1a;
+}
+
+.header-red {
+  background-color: #1a1a1a;
 }
 
 /* Título */
@@ -55,6 +67,24 @@ nav ul li a {
   height: 100%; /* Hace que el texto ocupe todo el alto disponible */
 }
 
+/* También puedes cambiar el color cuando de los enlaces esté en hover */
+nav ul li a:hover {
+  color: rgb(255, 168, 5); /* Cambiar color al pasar el ratón */
+}
+
+nav ul li button {
+  color: #ffffff; /* Texto blanco */
+  text-decoration: none;
+  display: flex; /* Usamos flexbox para alineación */
+  align-items: center; /* Alinea verticalmente el texto */
+  height: 100%; /* Hace que el texto ocupe todo el alto disponible */
+}
+
+/* También puedes cambiar el color cuando el botón esté en hover */
+nav ul li button:hover {
+  color: rgb(255, 168, 5); /* Cambiar color al pasar el ratón */
+}
+
 /* Estilo del botón de login */
 .login-button {
   background-color: #ff9900e3; /* Color de fondo naranja */
@@ -70,7 +100,8 @@ nav ul li a {
 
 /* Efectos de hover sobre el botón */
 .login-button:hover {
-  background-color: #45a049; /* Color de fondo al hacer hover */
+  background-color: #744500e3; /* Color de fondo al hacer hover */
+  color: white;
 }
 
 .login-button:focus {

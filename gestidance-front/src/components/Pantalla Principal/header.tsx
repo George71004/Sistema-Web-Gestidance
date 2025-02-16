@@ -1,19 +1,39 @@
 import * as React from "react";
-import { Link, useNavigate } from "react-router-dom"; // Importamos useNavigate
+import { Link, useNavigate, useLocation } from "react-router-dom"; // Importamos useLocation
 import "./header.css";
 import Logo from "./Logo.png"; // Asegúrate de que la ruta sea correcta
 
 const Header: React.FC = () => {
-  // Inicializamos el hook useNavigate
   const navigate = useNavigate();
+  const location = useLocation(); // Usamos useLocation para obtener la ruta actual
 
-  // Función para navegar a la página de login cuando se haga clic en el botón
   const handleLoginClick = () => {
     navigate("/login");
   };
 
+  const handleScrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const handleHomeClick = () => {
+    navigate("/");
+    setTimeout(() => {
+      handleScrollToSection("fondo");
+    }, 0);
+  };
+
+  // Determina la clase del header basada en la ruta actual
+  const headerClass =
+    location.pathname === "/" ? "header-transparent" : "header-red";
+
   return (
-    <header>
+    <header className={headerClass}>
       <h1>Comp Talent</h1>
       <div className="logo">
         <img src={Logo} alt="Logotipo de Comp Talent" />
@@ -21,18 +41,19 @@ const Header: React.FC = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/">Inicio</Link>
+            <button onClick={handleHomeClick}>Inicio</button>
+          </li>
+          <li></li>
+          <li>
+            <button onClick={() => handleScrollToSection("acerca")}>
+              Acerca
+            </button>
           </li>
           <li>
-            <Link to="/inscripcion">Inscripcion</Link>
+            <button onClick={() => handleScrollToSection("contacto")}>
+              Contacto
+            </button>
           </li>
-          <li>
-            <Link to="#acerca">Acerca</Link>
-          </li>
-          <li>
-            <Link to="#contacto">Contacto</Link>
-          </li>
-          {/* Aquí cambiamos el enlace de Login por un botón */}
           <li>
             <button onClick={handleLoginClick} className="login-button">
               Login
