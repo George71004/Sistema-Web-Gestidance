@@ -6,6 +6,8 @@ import Puntos from "./Puntaje";
 import "./Pantalla-admin.css";
 import academiaIcon from './academia.png'; // Importar la imagen
 import PuntosIcon from "./puntos.png"
+import BaileIcon from "./baile.png"
+import Inscripcion_baile from "./Inscripcion"
 
 interface AdminProps {
   isAuthenticated: boolean;
@@ -22,6 +24,10 @@ const Admin: React.FC<AdminProps> = ({ isAuthenticated }) => {
     navigate("/admin/puntos");
   };
 
+  const handleBailarinClick = () => {
+    navigate("/admin/inscripcion_baile");
+  };
+
   return (
     <div className="admin-container">
       <div className="background-overlay"></div>
@@ -36,7 +42,10 @@ const Admin: React.FC<AdminProps> = ({ isAuthenticated }) => {
             <img src={academiaIcon} alt="Academia" className="icon" />
             <span>Academia</span>
           </div>
-          <div className="grid-item-admin">Botón 3</div>
+          <div className="grid-item-admin" onClick={handleBailarinClick}>
+            <img src={BaileIcon} alt="Bailarin" className="icon" />
+            <span>Bailarin</span>
+          </div>
           <div className="grid-item-admin">Botón 4</div>
         </div>
       </div>
@@ -48,6 +57,10 @@ const Admin: React.FC<AdminProps> = ({ isAuthenticated }) => {
         <Route
           path="/admin/puntos"
           element={isAuthenticated ? <Puntos /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/admin/inscripcion_baile"
+          element={isAuthenticated ? <Inscripcion_baile /> : <Navigate to="/login" />}
         />
       </Routes>
     </div>

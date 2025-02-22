@@ -12,10 +12,10 @@ import Login from "./components/Pantalla Principal/Login";
 import Fondo from "./components/Pantalla Principal/Fondo-principal";
 import WelcomeMessage from "./components/Pantalla Principal/WelcomeMessage";
 import HomePage from "./components/Pantalla Principal/home-page";
-import Inscripcion from "./components/Pantalla Principal/Inscripcion";
 import Admin from "./components/Pantalla Admin/Pantalla-admin";
 import AdminHeader from "./components/Pantalla Admin/header-admin";
 import Inscripcion_academia from "./components/Pantalla Admin/Inscripcion-academia";
+import Inscripcion_baile from "./components/Pantalla Admin/Inscripcion"
 import Puntos from "./components/Pantalla Admin/Puntaje"
 
 const App: React.FC = () => {
@@ -73,8 +73,8 @@ const AppContent: React.FC = () => {
           element={isAuthenticated ? <Puntos /> : <Navigate to="/login" />}
         />
         <Route
-          path="/inscripcion"
-          element={<Inscripcion />}
+          path="/admin/inscripcion_baile"
+          element={isAuthenticated ? <Inscripcion_baile /> : <Navigate to="/login" />}
         />
       </Routes>
     </>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios, { AxiosError } from "axios";
-import "./Inscripcion.css"; // Importamos el archivo CSS
+import "./Inscripcion.css";
+import BaileDataTable from "./Datatable/Bailarines-data";
 
-export default function DancerSignup() {
+export default function NuevoDancerSignup() {
   const [fullName, setFullName] = useState("");
   const [idNumber, setIdNumber] = useState("");
   const [birthdate, setBirthdate] = useState("");
@@ -26,7 +27,7 @@ export default function DancerSignup() {
         category,
       });
 
-      console.log(response.data.message); // Mostrar mensaje de éxito
+      console.log(response.data.message); 
       alert("¡Inscripción exitosa!");
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -38,20 +39,19 @@ export default function DancerSignup() {
   };
 
   return (
-    <div className="container">
-      <div className="form-wrapper">
-        <h1 className="title">Inscripción de Bailarines</h1>
+    <div className="super-container-nueva">
+      <div className="nueva-form-wrapper">
+        <h1 className="nueva-title">Inscripción de Bailarines</h1>
         <form onSubmit={handleSubmit}>
-          <div className="grid-container">
-            {/* Nombre Completo */}
-            <div className="field">
-              <label className="label" htmlFor="full-name">
+          <div className="nueva-grid-container">
+            <div className="nueva-field">
+              <label className="nueva-label" htmlFor="full-name">
                 Nombre Completo
               </label>
               <input
                 type="text"
                 id="full-name"
-                className="input"
+                className="nueva-input"
                 placeholder="Nombre completo"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
@@ -59,15 +59,14 @@ export default function DancerSignup() {
               />
             </div>
 
-            {/* Cédula */}
-            <div className="field">
-              <label className="label" htmlFor="id-number">
+            <div className="nueva-field">
+              <label className="nueva-label" htmlFor="id-number">
                 Cédula
               </label>
               <input
                 type="text"
                 id="id-number"
-                className="input"
+                className="nueva-input"
                 placeholder="Cédula"
                 value={idNumber}
                 onChange={(e) => setIdNumber(e.target.value)}
@@ -75,30 +74,28 @@ export default function DancerSignup() {
               />
             </div>
 
-            {/* Fecha de Nacimiento */}
-            <div className="field">
-              <label className="label" htmlFor="birthdate">
+            <div className="nueva-field">
+              <label className="nueva-label" htmlFor="birthdate">
                 Fecha de Nacimiento
               </label>
               <input
                 type="date"
                 id="birthdate"
-                className="input"
+                className="nueva-input"
                 value={birthdate}
                 onChange={(e) => setBirthdate(e.target.value)}
                 required
               />
             </div>
 
-            {/* Instagram */}
-            <div className="field">
-              <label className="label" htmlFor="instagram">
+            <div className="nueva-field">
+              <label className="nueva-label" htmlFor="instagram">
                 Instagram
               </label>
               <input
                 type="text"
                 id="instagram"
-                className="input"
+                className="nueva-input"
                 placeholder="@instagram"
                 value={instagram}
                 onChange={(e) => setInstagram(e.target.value)}
@@ -106,14 +103,13 @@ export default function DancerSignup() {
               />
             </div>
 
-            {/* Sexo */}
-            <div className="field">
-              <label className="label" htmlFor="gender">
+            <div className="nueva-field">
+              <label className="nueva-label" htmlFor="gender">
                 Sexo
               </label>
               <select
                 id="gender"
-                className="select"
+                className="nueva-select"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
                 required
@@ -125,14 +121,13 @@ export default function DancerSignup() {
               </select>
             </div>
 
-            {/* Academia */}
-            <div className="field">
-              <label className="label" htmlFor="academy">
+            <div className="nueva-field">
+              <label className="nueva-label" htmlFor="academy">
                 Academia
               </label>
               <select
                 id="academy"
-                className="select"
+                className="nueva-select"
                 value={academy}
                 onChange={(e) => setAcademy(e.target.value)}
                 required
@@ -143,14 +138,13 @@ export default function DancerSignup() {
               </select>
             </div>
 
-            {/* Categoría */}
-            <div className="field">
-              <label className="label" htmlFor="category">
+            <div className="nueva-field">
+              <label className="nueva-label" htmlFor="category">
                 Categoría
               </label>
               <select
                 id="category"
-                className="select"
+                className="nueva-select"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 required
@@ -162,15 +156,18 @@ export default function DancerSignup() {
             </div>
           </div>
 
-          {/* Mensaje de error si lo hay */}
-          {error && <p className="error-message">{error}</p>}
+          {error && <p className="nueva-error-message">{error}</p>}
 
-          {/* Botón de enviar */}
-          <button type="submit" className="submit-button">
+          <button type="submit" className="nueva-submit-button">
             Inscribir Bailarín
           </button>
         </form>
       </div>
+      <div className="nueva-datatable-wrapper">
+      <BaileDataTable />
+      </div>
     </div>
   );
 }
+
+
