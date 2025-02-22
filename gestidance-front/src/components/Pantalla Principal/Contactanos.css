@@ -5,9 +5,12 @@
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
   max-width: 600px; /* Ampliar un poco el ancho máximo */
-  margin: 50px auto; /* Espacio superior y centrado */
+  margin: 50px 0 50px 0; /* Espacio superior e inferior centrado, sin margen lateral */
   border-radius: 30px;
+  text-align: left; /* Alineación a la izquierda */
+  float: left; /* Flota el formulario hacia la izquierda */
 }
+
 
 .contacto-title {
   text-align: center;

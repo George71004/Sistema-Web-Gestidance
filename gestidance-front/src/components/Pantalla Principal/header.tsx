@@ -1,11 +1,29 @@
 import * as React from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom"; // Importamos useLocation
-import "./header.css";
-import Logo from "./Logo.png"; // Asegúrate de que la ruta sea correcta
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import "./estilos.css";
+import Logo from "./Logo.png";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // Usamos useLocation para obtener la ruta actual
+  const location = useLocation();
+  const [scrolled, setScrolled] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleLoginClick = () => {
     navigate("/login");
@@ -28,13 +46,10 @@ const Header: React.FC = () => {
     }, 0);
   };
 
-  // Determina la clase del header basada en la ruta actual
-  const headerClass =
-    location.pathname === "/" ? "header-transparent" : "header-red";
+  const headerClass = scrolled ? "header-scrolled" : (location.pathname === "/" ? "header-transparent" : "header-def");
 
   return (
     <header className={headerClass}>
-      <h1>Comp Talent</h1>
       <div className="logo">
         <img src={Logo} alt="Logotipo de Comp Talent" />
       </div>
@@ -45,19 +60,13 @@ const Header: React.FC = () => {
           </li>
           <li></li>
           <li>
-            <button onClick={() => handleScrollToSection("acerca")}>
-              Acerca
-            </button>
+            <button onClick={() => handleScrollToSection("acerca")}>Acerca</button>
           </li>
           <li>
-            <button onClick={() => handleScrollToSection("contacto")}>
-              Contacto
-            </button>
+            <button onClick={() => handleScrollToSection("contacto")}>Contacto</button>
           </li>
           <li>
-            <button onClick={handleLoginClick} className="login-button">
-              Login
-            </button>
+            <button onClick={handleLoginClick} className="login-button">Login</button>
           </li>
         </ul>
       </nav>
@@ -66,3 +75,4 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+

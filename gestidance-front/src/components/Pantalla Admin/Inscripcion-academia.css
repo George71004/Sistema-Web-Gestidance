@@ -1,0 +1,87 @@
+.admin-container-form {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-image: url("Fondo2.png");
+    background-size: cover; /* Asegura que la imagen cubra toda el área */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+  }
+  
+  .admin-form-wrapper {
+    height: 75%;
+    width: 60%;
+    background-color: #ffffff; /* bg-white */
+    padding: 2rem; /* menor padding superior e inferior */
+    padding-top: 2.4rem;
+    padding-bottom: 2rem;
+    border-radius: 1rem; /* rounded-2xl */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    margin-top: 5rem; /* mt-20 */
+  }
+  
+  .admin-title {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: bold;
+    color: #1f2937; /* text-gray-800 */
+    text-align: center;
+    margin-bottom: 2rem; /* mb-4 */
+  
+  }
+  
+  .admin-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* grid-cols-2 */
+    row-gap: 0.3rem; /* Espacio entre filas */
+    column-gap: 1.5rem; /* Espacio entre columnas */
+    margin-bottom: 10px;
+  }
+  
+  .admin-field {
+    margin-bottom: 1rem; /* mb-4 */
+  }
+  
+  .admin-label {
+    display: block;
+    color: #4b5563; /* text-gray-700 */
+    font-weight: 500; /* font-medium */
+    margin-bottom: 0.5rem; /* mb-2 */
+  }
+  
+  .admin-input,
+  .admin-select {
+    width: 100%;
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    border: 1px solid #d1d5db; /* border-gray-300 */
+    color: #4b5563;
+    border-radius: 0.5rem; /* rounded-lg */
+    outline: none;
+    background-color: white;
+    transition: box-shadow 0.2s;
+  }
+  
+  .admin-input:focus,
+  .admin-select:focus {
+    box-shadow: 0 0 0 2px #3b82f6; /* focus:ring-2 focus:ring-blue-500 */
+  }
+  
+  .admin-error-message {
+    color: #ef4444; /* text-red-500 */
+    font-size: 0.875rem; /* text-sm */
+    margin-bottom: 1rem; /* mb-4 */
+  }
+  
+  .admin-submit-button {
+    width: 100%;
+    background-color: #2563eb; /* bg-blue-600 */
+    color: #ffffff; /* text-white */
+    padding: 0.5rem 1rem; /* py-2 */
+    border-radius: 0.5rem; /* rounded-lg */
+    transition: background-color 0.2s;
+  }
+  
+  .admin-submit-button:hover {
+    background-color: #1d4ed8; /* hover:bg-blue-700 */
+  }
+  

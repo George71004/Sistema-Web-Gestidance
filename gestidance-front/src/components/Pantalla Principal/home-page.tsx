@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./home-page.css"; // Importa el archivo de estilos
+import { useNavigate, useLocation } from "react-router-dom";
 import Contacto from "./Contactanos";
 
+
 const MensajeInformativo = () => {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false); // Estado para manejar la visibilidad
 
   useEffect(() => {
@@ -30,6 +33,10 @@ const MensajeInformativo = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavigate = (path: string) => {
+    navigate(path);
+  };
+
   return (
     <div className={`mensaje-informativo ${isVisible ? "visible" : ""}`}>
       <h4>¿Qué es?</h4>
@@ -37,6 +44,12 @@ const MensajeInformativo = () => {
         Es un espacio digital destinado al apoyo hacia grandes empresas para la
         gestión y control de eventos de bailes de cualquier tipo.
       </p>
+      <button
+              onClick={() => handleNavigate("/inscripcion")}
+              className="admin-inscripcion-button"
+            >
+              Inscribete 
+            </button>
     </div>
   );
 };
