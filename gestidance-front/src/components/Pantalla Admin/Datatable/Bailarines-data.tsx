@@ -10,7 +10,6 @@ interface Dancer {
   participationNumber: string;
   position: string;
   academyName: string;
-  categoryName: string;
 }
 
 const DancerDataTable: React.FC = () => {
@@ -24,7 +23,6 @@ const DancerDataTable: React.FC = () => {
       participationNumber: "001",
       position: "1",
       academyName: "Academia de Danza 1",
-      categoryName: "Salsa"
     },
     {
       id: 2,
@@ -35,7 +33,6 @@ const DancerDataTable: React.FC = () => {
       participationNumber: "002",
       position: "2",
       academyName: "Academia de Danza 2",
-      categoryName: "Bachata"
     },
     {
       id: 3,
@@ -46,9 +43,18 @@ const DancerDataTable: React.FC = () => {
       participationNumber: "003",
       position: "3",
       academyName: "Academia de Danza 3",
-      categoryName: "Merengue"
     }
   ]);
+
+  const handleModify = (id: number) => {
+    alert(`Modificar academia con ID: ${id}`);
+    // Aquí puedes añadir la lógica para modificar la academia
+  };
+
+  const handleDelete = (id: number) => {
+    alert(`Eliminar academia con ID: ${id}`);
+    // Aquí puedes añadir la lógica para eliminar la academia
+  };
 
   const columns = [
     {
@@ -87,20 +93,39 @@ const DancerDataTable: React.FC = () => {
       sortable: true,
     },
     {
-      name: "Categoría",
-      selector: (row: Dancer) => row.categoryName,
-      sortable: true,
+      name: 'Acciones',
+      cell: (row: Dancer) => (
+        <div>
+          <select onChange={(e) => {
+            const value = e.target.value;
+            if (value === "modificar") {
+              handleModify(row.id);
+            } else if (value === "eliminar") {
+              handleDelete(row.id);
+            }
+          }}>
+            <option value="">Opción</option>
+            <option value="modificar">Modificar</option>
+            <option value="eliminar">Eliminar</option>
+          </select>
+        </div>
+      ),
     },
   ];
   
   return (
-    <DataTableAcademy
-      columns={columns}
-      data={dancers}
-      pagination
-      highlightOnHover
-      responsive
-    />
+    <div>
+      <h2 className="h2_admin">Bailarines registrados
+      </h2>
+      <DataTableAcademy
+        columns={columns}
+        data={dancers}
+        pagination
+        highlightOnHover
+        responsive
+      />
+    </div>
+   
   );
   };
   

@@ -1,0 +1,118 @@
+.super-container {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-image: url("Fondo2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.category-form-wrapper {
+  height: 75%;
+  width: 40%;
+  background-color: #ffffff;
+  padding: 2rem;
+  padding-top: 2.4rem;
+  padding-bottom: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 5rem;
+  margin-left: 3%;
+}
+
+.category-datatable-wrapper {
+  text-align: center;
+  align-items: center;
+  height: 75%;
+  width: 70%;
+  background-color: #ffffff;
+  padding: 2rem;
+  padding-top: 2.4rem;
+  padding-bottom: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 5rem;
+  margin-right: 3%;
+}
+
+.h2_admin {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.category-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.category-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 0.3rem;
+  column-gap: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.category-field {
+  margin-bottom: 1rem;
+}
+
+.category-label {
+  display: block;
+  color: #4b5563;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.category-input,
+.category-select {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+  border-radius: 0.5rem;
+  outline: none;
+  background-color: white;
+  transition: box-shadow 0.2s;
+}
+
+.category-input:focus,
+.category-select:focus {
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.category-error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.category-submit-button {
+  width: 100%;
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category-submit-button:hover {
+  background-color: #1d4ed8;
+}
+
+.category-submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #2563eb4d;
+}

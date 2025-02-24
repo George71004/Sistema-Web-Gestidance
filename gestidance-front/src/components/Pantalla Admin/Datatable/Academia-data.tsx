@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DataTableAcademy from 'react-data-table-component';
 
 interface Academy {
@@ -34,6 +34,16 @@ const AcademyDataTable: React.FC = () => {
     }
   ]);
 
+  const handleModify = (id: number) => {
+    alert(`Modificar academia con ID: ${id}`);
+    // Aquí puedes añadir la lógica para modificar la academia
+  };
+
+  const handleDelete = (id: number) => {
+    alert(`Eliminar academia con ID: ${id}`);
+    // Aquí puedes añadir la lógica para eliminar la academia
+  };
+
   const columns = [
     {
       name: 'Nombre de la Academia',
@@ -51,11 +61,30 @@ const AcademyDataTable: React.FC = () => {
       name: 'Teléfono del Director',
       selector: (row: Academy) => row.directorPhone,
     },
+    {
+      name: 'Acciones',
+      cell: (row: Academy) => (
+        <div>
+          <select onChange={(e) => {
+            const value = e.target.value;
+            if (value === "modificar") {
+              handleModify(row.id);
+            } else if (value === "eliminar") {
+              handleDelete(row.id);
+            }
+          }}>
+            <option value="">Opción</option>
+            <option value="modificar">Modificar</option>
+            <option value="eliminar">Eliminar</option>
+          </select>
+        </div>
+      ),
+    },
   ];
 
   return (
     <div className="admin-container-datatable">
-      <h2 className="h2_admin">Academias Registradas</h2>
+      <h2 className="h2_admin">Academias registradas</h2>
       <DataTableAcademy
         columns={columns}
         data={academies}

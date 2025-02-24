@@ -24,7 +24,6 @@ export default function NuevoDancerSignup() {
         instagram,
         gender,
         academy,
-        category,
       });
 
       console.log(response.data.message); 
@@ -138,22 +137,6 @@ export default function NuevoDancerSignup() {
               </select>
             </div>
 
-            <div className="nueva-field">
-              <label className="nueva-label" htmlFor="category">
-                Categoría
-              </label>
-              <select
-                id="category"
-                className="nueva-select"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                required
-              >
-                <option value="">Selecciona tu categoría</option>
-                <option value="category1">Categoría 1</option>
-                <option value="category2">Categoría 2</option>
-              </select>
-            </div>
           </div>
 
           {error && <p className="nueva-error-message">{error}</p>}
