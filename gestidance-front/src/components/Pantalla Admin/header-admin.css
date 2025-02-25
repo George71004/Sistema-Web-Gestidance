@@ -2,8 +2,9 @@
 .admin-header {
   display: flex;
   align-items: center; /* Alinea todos los elementos verticalmente en el centro */
-  padding: 15px 20px;
-  height: 80px; /* Fija la altura del header */
+  margin-top: 5px;
+  padding: 20px 20px;
+  height: 20%; /* Fija la altura del header */
   justify-content: space-between; /* Distribuye los elementos */
   position: fixed; /* Hace que el header esté fijo en la pantalla */
   top: 0; /* Lo fija en la parte superior */
@@ -13,11 +14,11 @@
 }
 
 .admin-header-transparent {
-  background-color: #1a1a1a;
+  background-color: #1a1a1a00;
 }
 
 .admin-header-red {
-  background-color: #1a1a1a;
+  background-color: #1a1a1a00;
 }
 
 /* Título */
@@ -30,15 +31,19 @@
 }
 
 .admin-logo {
-  display: flex; 
+  display: flex;
   align-items: center; /* Centra verticalmente el logo dentro del header */
 }
 
 .admin-logo img {
   height: 160px;
-  margin-top: 10px; /* Ajusta este valor según la separación que desees */
+  margin-top: 20px; /* Ajusta este valor según la separación que desees */
+}
 
-}  
+.admin-icon img {
+  height: 80px;
+  margin-top: 20px;
+}
 
 /* Estilo de la barra de navegación */
 .admin-nav {
@@ -80,12 +85,12 @@
   align-items: center; /*
   height: 100%; /* Hace que el texto ocupe todo el alto disponible */
 }
-  
+
 /* También puedes cambiar el color cuando el botón esté en hover */
 .admin-nav ul li button:hover {
   color: rgb(255, 168, 5); /* Cambiar color al pasar el ratón */
 }
 
-.user-button{
+.user-button {
   color: rgb(255, 255, 255);
 }

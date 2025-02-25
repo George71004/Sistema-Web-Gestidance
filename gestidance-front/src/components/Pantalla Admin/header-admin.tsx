@@ -2,6 +2,7 @@ import * as React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./header-admin.css";
 import Logo from "./Logo.png";
+import Admin from "./Admin.png";
 
 const AdminHeader: React.FC = () => {
   const navigate = useNavigate();
@@ -13,7 +14,9 @@ const AdminHeader: React.FC = () => {
 
   // Determina la clase del header basada en la ruta actual
   const adminHeaderClass =
-    location.pathname === "/admin" ? "admin-header-transparent" : "admin-header-red";
+    location.pathname === "/admin"
+      ? "admin-header-transparent"
+      : "admin-header-red";
 
   return (
     <header className={adminHeaderClass}>
@@ -26,12 +29,12 @@ const AdminHeader: React.FC = () => {
             <button onClick={() => handleNavigate("/admin")}>Inicio</button>
           </li>
           <li>
-            <button
-              onClick={() => handleNavigate("/admin")}
-              className="user-button"
-            >
-              Admin
-            </button>
+            <button>UserAdmin05</button>
+          </li>
+          <li>
+            <div className="admin-icon">
+              <img src={Admin} alt="Logotipo de administrador" />
+            </div>
           </li>
         </ul>
       </nav>

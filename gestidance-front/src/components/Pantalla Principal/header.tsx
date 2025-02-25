@@ -46,10 +46,14 @@ const Header: React.FC = () => {
     }, 0);
   };
 
-  const headerClass = scrolled ? "header-scrolled" : (location.pathname === "/" ? "header-transparent" : "header-def");
+  const headerClass = scrolled
+    ? "header-scrolled"
+    : location.pathname === "/"
+    ? "header-transparent"
+    : "header-def";
 
   return (
-    <header className={headerClass}>
+    <header className="headerClass">
       <div className="logo">
         <img src={Logo} alt="Logotipo de Comp Talent" />
       </div>
@@ -60,13 +64,19 @@ const Header: React.FC = () => {
           </li>
           <li></li>
           <li>
-            <button onClick={() => handleScrollToSection("acerca")}>Acerca</button>
+            <button onClick={() => handleScrollToSection("acerca")}>
+              Acerca
+            </button>
           </li>
           <li>
-            <button onClick={() => handleScrollToSection("contacto")}>Contacto</button>
+            <button onClick={() => handleScrollToSection("contacto")}>
+              Contacto
+            </button>
           </li>
           <li>
-            <button onClick={handleLoginClick} className="login-button">Login</button>
+            <button onClick={handleLoginClick} className="login-button">
+              Login
+            </button>
           </li>
         </ul>
       </nav>
@@ -75,4 +85,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-

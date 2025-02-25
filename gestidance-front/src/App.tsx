@@ -25,6 +25,8 @@ import Inscripcion_baile from "./components/Pantalla Admin/Inscripcion";
 import Puntos from "./components/Pantalla Admin/Puntaje";
 import Jurado from "./components/Pantalla Admin/jurado";
 import Categoria from "./components/Pantalla Admin/Categoria";
+import PartAcademia from "./components/Pantalla Admin/Participacion-academia";
+import PartBaile from "./components/Pantalla Admin/Participacion-bailarin";
 
 const App: React.FC = () => {
   return (
@@ -105,6 +107,16 @@ const AppContent: React.FC = () => {
         <Route
           path="/admin/categoria"
           element={isAuthenticated ? <Categoria /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/admin/participacion_academia"
+          element={
+            isAuthenticated ? <PartAcademia /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/admin/participacion_baile"
+          element={isAuthenticated ? <PartBaile /> : <Navigate to="/login" />}
         />
       </Routes>
     </>
