@@ -13,9 +13,8 @@ export default function AcademySignup() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/api/academy-signup", { academyName, registrationDate, directorName, directorPhone });
-      console.log(response.data.message); // Mostrar mensaje de éxito
-      alert("¡Academia inscrita con éxito!");
+      const response = await axios.post("http://localhost:3001/api/academia/agregar", { academyName, registrationDate, directorName, directorPhone });
+      console.log(response.data.message);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.message || "Error al inscribir la academia");
