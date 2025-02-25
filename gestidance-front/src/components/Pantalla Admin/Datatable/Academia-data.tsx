@@ -9,7 +9,13 @@ interface Academy {
   directorPhone: string;
 }
 
-const AcademyDataTable: React.FC = () => {
+interface AcademyDataTableProps {
+  refreshTable: boolean; // Prop para recargar la tabla
+  onModify: (academyName: string,directorName: string,directorPhone: string) => void; // Callback para modificar
+  onDelete: (academyName: string) => void; // Callback para eliminar
+}
+
+const AcademyDataTable: React.FC<AcademyDataTableProps> = ({ refreshTable, onModify,onDelete}) => {
   const [academies, setAcademies] = useState<Academy[]>([]);
 
   // Cargar los datos de la academia al montar el componente
@@ -22,7 +28,7 @@ const AcademyDataTable: React.FC = () => {
         const mappedAcademies = response.data.map((academia: any) => ({
           academyName: academia.nombre,
           registrationDate: academia.fechainsc,
-          directorName: academia.nombredirect,
+          directorName: academia.nombdirect,
           directorPhone: academia.tlfdirect,
         }));
 
@@ -33,17 +39,7 @@ const AcademyDataTable: React.FC = () => {
     };
 
     fetchAcademies(); // Llamar a la función para cargar los datos
-  }, []); // El array vacío asegura que esto se ejecute solo una vez al montar el componente
-
-  const handleModify = (id: string) => {
-    alert(`Modificar academia con ID: ${id}`);
-    // Aquí puedes añadir la lógica para modificar la academia
-  };
-
-  const handleDelete = (id: string) => {
-    alert(`Eliminar academia con ID: ${id}`);
-    // Aquí puedes añadir la lógica para eliminar la academia
-  };
+  },[refreshTable]); // El array vacío asegura que esto se ejecute solo una vez al montar el componente
 
   const columns = [
     {
@@ -52,7 +48,7 @@ const AcademyDataTable: React.FC = () => {
     },
     {
       name: 'Fecha de Inscripción',
-      selector: (row: Academy) => row.registrationDate,
+      selector: (row: Academy) => row.registrationDate.split("T")[0],
     },
     {
       name: 'Nombre del Director',
@@ -70,10 +66,11 @@ const AcademyDataTable: React.FC = () => {
             onChange={(e) => {
               const value = e.target.value;
               if (value === "modificar") {
-                handleModify(row.academyName);
+                onModify(row.academyName,row.directorName,row.directorPhone);
               } else if (value === "eliminar") {
-                handleDelete(row.academyName);
+                onDelete(row.academyName);
               }
+              e.target.value="";
             }}
           >
             <option value="">Opción</option>
