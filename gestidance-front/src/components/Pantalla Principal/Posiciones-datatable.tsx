@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DataTablepos from "react-data-table-component";
+import DataTable from "react-data-table-component";
 import "./Posiciones.css";
 
 interface Dancer {
@@ -72,29 +72,31 @@ const DancerDataTable: React.FC = () => {
   ];
 
   return (
-    <div className="encabezado">
-      <h2 className="h2_admin">Tabla de Posiciones</h2>
-      <div>
-        <label htmlFor="categoryFilter">Filtrar por categoría:</label>
-        <select
-          id="categoryFilter"
-          value={filterCategory}
-          onChange={(e) => setFilterCategory(e.target.value)}
-        >
-          <option value="">Todas</option>
-          <option value="Salsa">Salsa</option>
-          <option value="Bachata">Bachata</option>
-          <option value="Hip-Hop">Hip-Hop</option>
-        </select>
-      </div>
-      <div className="hola">
-        <DataTablepos
-          columns={columns}
-          data={filteredDancers}
-          pagination
-          highlightOnHover
-          responsive
-        />
+    <div className="page-background">
+      <div className="main-container">
+        <h2 className="h2_admin">Tabla de posiciones</h2>
+        <div className="contenedor-filtro">
+          <label htmlFor="categoryFilter">Filtrar por categoría:</label>
+          <select
+            id="categoryFilter"
+            value={filterCategory}
+            onChange={(e) => setFilterCategory(e.target.value)}
+          >
+            <option value="">Todas</option>
+            <option value="Salsa">Salsa</option>
+            <option value="Bachata">Bachata</option>
+            <option value="Hip-Hop">Hip-Hop</option>
+          </select>
+        </div>
+        <div className="tabla-posiciones">
+          <DataTable
+            columns={columns}
+            data={filteredDancers}
+            pagination
+            highlightOnHover
+            responsive
+          />
+        </div>
       </div>
     </div>
   );

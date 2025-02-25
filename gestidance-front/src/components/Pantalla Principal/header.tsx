@@ -69,6 +69,11 @@ const Header: React.FC = () => {
             </button>
           </li>
           <li>
+            <button onClick={() => handleScrollToSection("posicion")}>
+              Posiciones
+            </button>
+          </li>
+          <li>
             <button onClick={() => handleScrollToSection("contacto")}>
               Contacto
             </button>

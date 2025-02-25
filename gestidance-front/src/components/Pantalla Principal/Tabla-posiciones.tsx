@@ -11,6 +11,7 @@ const ContenedorTablas: React.FC = () => {
 
   return (
     <div className="contenedor-tablas">
+      <h3 className="titulo-pos">Posiciones por categoria</h3>
       <div className="dance-ranking-container">
         <h2 className="category-posicion">Salsa</h2>
         <table className="ranking-table">

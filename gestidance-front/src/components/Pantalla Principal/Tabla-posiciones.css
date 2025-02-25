@@ -1,10 +1,23 @@
 .contenedor-tablas {
   display: flex;
-  margin-top: 10%;
+  margin-top: 1%;
   justify-content: space-around;
   width: 100%;
-  padding: 20px;
-  background-color: #727272b9;
+  padding: 10px;
+  background-color: #72727270;
+}
+
+.titulo-pos {
+  color: white; /* H1 en blanco */
+  margin-left: 30px; /* Centra horizontalmente */
+  text-align: left; /* Centra el texto */
+  justify-items: center;
+  align-self: center;
+  display: flex;
+  justify-content: center; /* Centra el contenedor horizontalmente */
+  align-items: center;
+  width: 240px;
+  height: 400px;
 }
 
 .dance-ranking-container {
@@ -57,7 +70,7 @@
   width: 40%;
   padding: 10px;
   margin-top: 20px;
-  background-color: #4caf50;
+  background-color: #ff7300;
   color: white;
   border: none;
   border-radius: 40px;
@@ -67,5 +80,5 @@
 }
 
 .seguir-button:hover {
-  background-color: #7aa57c;
+  background-color: #daab86;
 }

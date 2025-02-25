@@ -1,18 +1,37 @@
-.encabezado{
-  margin-top: 20%;
+.page-background {
+  background-image: url("Fondo3.jpg");
+  background-size: cover; /* Ajusta el fondo al tamaño de la pantalla */
+  background-attachment: fixed; /* Mantiene el fondo fijo al hacer scroll */
+  background-position: center;
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.hola {
-  text-align: center;
+.main-container {
+  background-color: #f0f0f03a; /* Fondo del contenedor */
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 75%;
-  width: 70%;
-  background-color: #ff0000;
-  padding: 2rem;
-  padding-top: 2.4rem;
-  padding-bottom: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  margin-top: 5rem;
-  margin-right: 3%;
+  justify-content: center;
+  width: 80%;
+  margin-top: 10%; /* 10% de margen superior, centrado horizontalmente */
+  margin-bottom: 2.5%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.h2_admin {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.contenedor-filtro {
+  margin-bottom: 20px;
+}
+
+.tabla-posiciones {
+  width: 100%;
 }

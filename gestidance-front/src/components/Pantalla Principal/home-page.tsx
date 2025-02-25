@@ -48,11 +48,11 @@ const HomePage: React.FC = () => {
       <div className="content-section" id="acerca">
         <MensajeInformativo />
       </div>
-      <div className="content-section" id="contacto">
-        <Contacto />
-      </div>
       <div className="content-section" id="posicion">
         <DanceRanking />
+      </div>
+      <div className="content-section" id="contacto">
+        <Contacto />
       </div>
     </div>
   );
