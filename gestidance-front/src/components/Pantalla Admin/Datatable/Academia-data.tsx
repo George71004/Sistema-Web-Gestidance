@@ -1,48 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import DataTableAcademy from 'react-data-table-component';
 
 interface Academy {
-  id: number;
   academyName: string;
   registrationDate: string;
   directorName: string;
   directorPhone: string;
 }
 
-const AcademyDataTable: React.FC = () => {
-  const [academies, setAcademies] = useState<Academy[]>([
-    {
-      id: 1,
-      academyName: "Academia de Danza 1",
-      registrationDate: "2025-01-15",
-      directorName: "María Pérez",
-      directorPhone: "1234567890"
-    },
-    {
-      id: 2,
-      academyName: "Academia de Danza 2",
-      registrationDate: "2025-02-10",
-      directorName: "Juan Rodríguez",
-      directorPhone: "0987654321"
-    },
-    {
-      id: 3,
-      academyName: "Academia de Danza 3",
-      registrationDate: "2025-03-05",
-      directorName: "Laura Gómez",
-      directorPhone: "1122334455"
-    }
-  ]);
+interface AcademyDataTableProps {
+  refreshTable: boolean; // Prop para recargar la tabla
+  onModify: (academyName: string,directorName: string,directorPhone: string) => void; // Callback para modificar
+  onDelete: (academyName: string) => void; // Callback para eliminar
+}
 
-  const handleModify = (id: number) => {
-    alert(`Modificar academia con ID: ${id}`);
-    // Aquí puedes añadir la lógica para modificar la academia
-  };
+const AcademyDataTable: React.FC<AcademyDataTableProps> = ({ refreshTable, onModify,onDelete}) => {
+  const [academies, setAcademies] = useState<Academy[]>([]);
 
-  const handleDelete = (id: number) => {
-    alert(`Eliminar academia con ID: ${id}`);
-    // Aquí puedes añadir la lógica para eliminar la academia
-  };
+  // Cargar los datos de la academia al montar el componente
+  useEffect(() => {
+    const fetchAcademies = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/api/academia/obtener");
+        
+        // Mapear los datos recibidos al formato esperado
+        const mappedAcademies = response.data.map((academia: any) => ({
+          academyName: academia.nombre,
+          registrationDate: academia.fechainsc,
+          directorName: academia.nombdirect,
+          directorPhone: academia.tlfdirect,
+        }));
+
+        setAcademies(mappedAcademies); // Actualizar el estado con los datos mapeados
+      } catch (error) {
+        console.error("Error al obtener los datos de la academia:", error);
+      }
+    };
+
+    fetchAcademies(); // Llamar a la función para cargar los datos
+  },[refreshTable]); // El array vacío asegura que esto se ejecute solo una vez al montar el componente
 
   const columns = [
     {
@@ -51,7 +48,7 @@ const AcademyDataTable: React.FC = () => {
     },
     {
       name: 'Fecha de Inscripción',
-      selector: (row: Academy) => row.registrationDate,
+      selector: (row: Academy) => row.registrationDate.split("T")[0],
     },
     {
       name: 'Nombre del Director',
@@ -65,14 +62,17 @@ const AcademyDataTable: React.FC = () => {
       name: 'Acciones',
       cell: (row: Academy) => (
         <div>
-          <select onChange={(e) => {
-            const value = e.target.value;
-            if (value === "modificar") {
-              handleModify(row.id);
-            } else if (value === "eliminar") {
-              handleDelete(row.id);
-            }
-          }}>
+          <select
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value === "modificar") {
+                onModify(row.academyName,row.directorName,row.directorPhone);
+              } else if (value === "eliminar") {
+                onDelete(row.academyName);
+              }
+              e.target.value="";
+            }}
+          >
             <option value="">Opción</option>
             <option value="modificar">Modificar</option>
             <option value="eliminar">Eliminar</option>
