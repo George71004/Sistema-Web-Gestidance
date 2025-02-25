@@ -1,4 +1,4 @@
-import React, { useActionState, useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./Inscripcion-academia.css"; // Asegúrate de tener el archivo CSS
 import AcademyDataTable from "./Datatable/Academia-data"; // Importar el DataTable
@@ -43,6 +43,11 @@ export default function AcademySignup() {
       }
     } finally {
       // Forzar la recarga de la tabla
+      setnombre_academia("");
+      setnombre_director("");
+      settelefono_director("");
+      setError("");
+      setmodoModificar(false);
       setRefreshTable((prev) => !prev);
     }
   };  

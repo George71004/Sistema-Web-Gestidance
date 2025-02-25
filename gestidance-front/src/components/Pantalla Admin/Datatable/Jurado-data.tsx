@@ -1,59 +1,56 @@
-import React, { useState } from "react";
-import DataTableAcademy from "react-data-table-component";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import DataTableAcademy from "react-data-table-component"; // Se utiliza el mismo componente de DataTable
 
 interface Jury {
-  id: number;
-  juryNumber: string;
-  juryName: string;
-  evaluationAspect: string;
+  numero: string;
+  nombre: string;
+  aspecto: string;
 }
 
-const JuryDataTable: React.FC = () => {
-  const [juryMembers, setJuryMembers] = useState<Jury[]>([
-    {
-      id: 1,
-      juryNumber: "001",
-      juryName: "Dr. Carlos Hernández",
-      evaluationAspect: "Técnica",
-    },
-    {
-      id: 2,
-      juryNumber: "002",
-      juryName: "Sra. Ana Martínez",
-      evaluationAspect: "Creatividad",
-    },
-    {
-      id: 3,
-      juryNumber: "003",
-      juryName: "Ing. José Pérez",
-      evaluationAspect: "Presentación",
-    },
-  ]);
+interface JuryDataTableProps {
+  refreshTable: boolean; // Prop para recargar la tabla
+  onModify: (row: any) => void; // Callback para modificar
+  onDelete: (numero: string) => void; // Callback para eliminar
+}
 
-  const handleModify = (id: number) => {
-    alert(`Modificar jurado con ID: ${id}`);
-    // Aquí puedes añadir la lógica para modificar el jurado
-  };
+const JuryDataTable: React.FC<JuryDataTableProps> = ({ refreshTable, onModify, onDelete }) => {
+  const [juryMembers, setJuryMembers] = useState<Jury[]>([]);
 
-  const handleDelete = (id: number) => {
-    alert(`Eliminar jurado con ID: ${id}`);
-    // Aquí puedes añadir la lógica para eliminar el jurado
-  };
+  // Cargar los datos del jurado al montar el componente y cuando refreshTable cambie
+  useEffect(() => {
+    const fetchJuryMembers = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/api/jurado/obtener");
+        // Mapear los datos recibidos al formato esperado
+        const mappedJury = response.data.map((jury: any) => ({
+          numero: jury.numero,
+          nombre: jury.nombre,
+          aspecto: jury.aspecto,
+        }));
+        setJuryMembers(mappedJury);
+      } catch (error) {
+        console.error("Error al obtener los datos del jurado:", error);
+      }
+    };
+
+    fetchJuryMembers();
+  }, [refreshTable]);
 
   const columns = [
     {
       name: "Número de Jurado",
-      selector: (row: Jury) => row.juryNumber,
+      selector: (row: Jury) => row.numero,
       sortable: true,
     },
     {
       name: "Nombre del Jurado",
-      selector: (row: Jury) => row.juryName,
+      selector: (row: Jury) => row.nombre,
       sortable: true,
     },
     {
       name: "Aspecto que Evalúa",
-      selector: (row: Jury) => row.evaluationAspect,
+      selector: (row: Jury) => row.aspecto,
       sortable: true,
     },
     {
@@ -64,10 +61,12 @@ const JuryDataTable: React.FC = () => {
             onChange={(e) => {
               const value = e.target.value;
               if (value === "modificar") {
-                handleModify(row.id);
+                onModify(row);
               } else if (value === "eliminar") {
-                handleDelete(row.id);
+                onDelete(row.numero);
               }
+              // Reiniciar el valor del select después de la acción
+              e.target.value = "";
             }}
           >
             <option value="">Opción</option>

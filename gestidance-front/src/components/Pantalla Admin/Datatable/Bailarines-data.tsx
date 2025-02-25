@@ -1,70 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import DataTableAcademy from 'react-data-table-component';
 
 interface Dancer {
-  id: number;
   cedula: string;
-  birthdate: string;
+  birthdate: Date;
   instagram: string;
   gender: string;
-  participationNumber: string;
-  position: string;
   academyName: string;
 }
 
-const DancerDataTable: React.FC = () => {
-  const [dancers, setDancers] = useState<Dancer[]>([
-    {
-      id: 1,
-      cedula: "123456789",
-      birthdate: "2000-01-01",
-      instagram: "@maria_perez",
-      gender: "F",
-      participationNumber: "001",
-      position: "1",
-      academyName: "Academia de Danza 1",
-    },
-    {
-      id: 2,
-      cedula: "987654321",
-      birthdate: "1995-06-15",
-      instagram: "@juan_fernandez",
-      gender: "M",
-      participationNumber: "002",
-      position: "2",
-      academyName: "Academia de Danza 2",
-    },
-    {
-      id: 3,
-      cedula: "112233445",
-      birthdate: "1998-11-30",
-      instagram: "@laura_gomez",
-      gender: "F",
-      participationNumber: "003",
-      position: "3",
-      academyName: "Academia de Danza 3",
-    }
-  ]);
+interface DancerDataTableProps {
+  refreshTable: boolean;
+  onModify: (dancer: Dancer) => void; // Callback para modificar con todos los datos
+  onDelete: (cedula: string) => void;  // Callback para eliminar
+}
 
-  const handleModify = (id: number) => {
-    alert(`Modificar academia con ID: ${id}`);
-    // Aquí puedes añadir la lógica para modificar la academia
-  };
+const DancerDataTable: React.FC<DancerDataTableProps> = ({ refreshTable, onModify, onDelete }) => {
+  const [dancers, setdancers] = useState<Dancer[]>([]);
 
-  const handleDelete = (id: number) => {
-    alert(`Eliminar academia con ID: ${id}`);
-    // Aquí puedes añadir la lógica para eliminar la academia
-  };
+  // Cargar los datos de los bailarines al montar el componente o al refrescar
+  useEffect(() => {
+    const fetchBailarines = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/api/bailarin/obtener");
+
+        const mappedDancers: Dancer[] = response.data.map((bailarin: any) => {
+          // Crear un objeto Date a partir de la fecha de nacimiento (suponiendo que 'fecha_nacimiento' es una cadena en formato aaaa/mm/dd)
+          const birthdate = new Date(bailarin.fecha_nacimiento);
+          
+          // Formatear la fecha en dd/mm/aaaa
+          const formattedBirthdate = `${birthdate.getDate().toString().padStart(2, '0')}/${(birthdate.getMonth() + 1).toString().padStart(2, '0')}/${birthdate.getFullYear()}`;
+        
+          return {
+            cedula: bailarin.cedula,
+            birthdate: formattedBirthdate,
+            instagram: bailarin.instagram,
+            gender: bailarin.sexo,
+            academyName: bailarin.nombre_academia,
+          };
+        });
+        
+
+        setdancers(mappedDancers);
+      } catch (error) {
+        console.error("Error al obtener los datos de los bailarines:", error);
+      }
+    };
+
+    fetchBailarines();
+  }, [refreshTable]);
 
   const columns = [
     {
-      name: "Cedula",
+      name: "Cédula",
       selector: (row: Dancer) => row.cedula,
       sortable: true,
     },
     {
       name: "Fecha de Nacimiento",
-      selector: (row: Dancer) => row.birthdate,
+      selector: (row: Dancer) => row.birthdate.toString().split("T")[0],
       sortable: true,
     },
     {
@@ -78,16 +73,6 @@ const DancerDataTable: React.FC = () => {
       sortable: true,
     },
     {
-      name: "Número de Participación",
-      selector: (row: Dancer) => row.participationNumber,
-      sortable: true,
-    },
-    {
-      name: "Posición",
-      selector: (row: Dancer) => row.position,
-      sortable: true,
-    },
-    {
       name: "Academia",
       selector: (row: Dancer) => row.academyName,
       sortable: true,
@@ -96,14 +81,17 @@ const DancerDataTable: React.FC = () => {
       name: 'Acciones',
       cell: (row: Dancer) => (
         <div>
-          <select onChange={(e) => {
-            const value = e.target.value;
-            if (value === "modificar") {
-              handleModify(row.id);
-            } else if (value === "eliminar") {
-              handleDelete(row.id);
-            }
-          }}>
+          <select
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value === "modificar") {
+                onModify(row); // Ahora se envía toda la fila al callback
+              } else if (value === "eliminar") {
+                onDelete(row.cedula);
+              }
+              e.target.value="";
+            }}
+          >
             <option value="">Opción</option>
             <option value="modificar">Modificar</option>
             <option value="eliminar">Eliminar</option>
@@ -112,11 +100,10 @@ const DancerDataTable: React.FC = () => {
       ),
     },
   ];
-  
+
   return (
     <div>
-      <h2 className="h2_admin">Bailarines registrados
-      </h2>
+      <h2 className="h2_admin">Bailarines registrados</h2>
       <DataTableAcademy
         columns={columns}
         data={dancers}
@@ -125,9 +112,7 @@ const DancerDataTable: React.FC = () => {
         responsive
       />
     </div>
-   
   );
-  };
-  
-  export default DancerDataTable;
-  
+};
+
+export default DancerDataTable;
