@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRouter from './routes/auth';
+import academia from './routes/academia';
 
 // Configura dotenv para cargar variables de entorno
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(express.json()); // Parsea el cuerpo de las solicitudes en formato JSON
 
 // Usar el router de autenticación
 app.use('/api/auth', authRouter);
+app.use('/api/academia', academia);
 
 // Manejador de errores global
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -23,7 +25,7 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 });
 
 // Escuchar en el puerto
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Backend ejecutándose en http://localhost:${PORT}`);
 });
