@@ -19,6 +19,8 @@ import HomePage from "./components/Pantalla Principal/home-page";
 import Admin from "./components/Pantalla Admin/Pantalla-admin";
 import AdminHeader from "./components/Pantalla Admin/header-admin";
 
+import Posiciones from "./components/Pantalla Principal/Posiciones-datatable";
+
 //Forms
 import Inscripcion_academia from "./components/Pantalla Admin/Inscripcion-academia";
 import Inscripcion_baile from "./components/Pantalla Admin/Inscripcion";
@@ -69,6 +71,7 @@ const AppContent: React.FC = () => {
           path="/login"
           element={<Login onLoginSuccess={handleLoginSuccess} />}
         />
+        <Route path="/puntaje" element={<Posiciones />} />
         <Route path="/" element={<HomePage />} />
         <Route
           path="/admin"

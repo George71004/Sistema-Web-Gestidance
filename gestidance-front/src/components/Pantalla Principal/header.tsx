@@ -53,7 +53,7 @@ const Header: React.FC = () => {
     : "header-def";
 
   return (
-    <header className="headerClass">
+    <header className={headerClass}>
       <div className="logo">
         <img src={Logo} alt="Logotipo de Comp Talent" />
       </div>

@@ -16,8 +16,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative; /* Añade esto para posicionar elementos hijos con absolute */
-    margin: 0; /* Elimina márgenes adicionales */
-  padding: 0; 
+  margin: 0; /* Elimina márgenes adicionales */
+  padding: 0;
 }
 
 /* Sección 2 con fondo personalizado */
@@ -37,8 +37,8 @@
 
 /* Estilo para el mensaje informativo */
 .mensaje-informativo {
-  width: 400px; /* Establece el tamaño del círculo */
-  height: 450px; /* Establece el tamaño del círculo */
+  width: 500px; /* Establece el tamaño del círculo */
+  height: 550px; /* Establece el tamaño del círculo */
   background-color: rgba(
     255,
     145,
@@ -53,37 +53,14 @@
   justify-content: center; /* Centra verticalmente */
   align-items: center; /* Centra horizontalmente */
   position: absolute; /* Posición absoluta dentro de la sección */
-  top: 50%; /* Posición vertical (desde el borde superior de la ventana) */
-  left: 80%; /* Centrado horizontalmente */
-  transform: translate(
-    -50%,
-    -50%
-  ); /* Mueve el círculo para que se centre completamente */
+  left: 60%; /* Centrado horizontalmente */
   text-align: center; /* Centra el texto */
   z-index: 10; /* Asegura que el círculo esté por encima de otros elementos */
-  opacity: 0; /* Inicialmente invisible para la animación */
-  animation: slideInRight 1s ease-out forwards,
-    fadeIn 1s 0.5s ease-in-out forwards; /* Añadir animación de deslizamiento y opacidad */
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Transiciones suaves */
 }
 
-/* Animación para el desplazamiento desde la derecha */
-@keyframes slideInRight {
-  0% {
-    right: -400px; /* Inicia fuera de la pantalla a la derecha */
-  }
-  100% {
-    right: 7%; /* Llega a la posición final */
-  }
-}
-
-/* Animación para el fade-in (desvanecimiento) */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.mensaje-informativo:hover {
+  transform: translateY(-10px); /* Movimiento ligero hacia arriba */
 }
 
 /* Estilo para el título dentro del círculo */
@@ -99,13 +76,12 @@
 
 /* Estilo para el párrafo dentro del círculo */
 .mensaje-informativo p {
-  width: 250px; /* Establece el tamaño del círculo */
+  width: 350px; /* Establece el tamaño del círculo */
   height: 200px; /* Establece el tamaño del círculo */
-  font-size: 1.3rem; /* Ajusta el tamaño del texto */
+  font-size: 1.5rem; /* Ajusta el tamaño del texto */
   color: white; /* Asegura que el texto dentro del círculo sea blanco */
   line-height: 1.5; /* Ajusta el espaciado entre las líneas */
   text-align: center; /* Asegura que el texto esté centrado */
- 
 }
 
 .content-section h3 {
@@ -149,8 +125,26 @@
   color: white;
 }
 
-  .admin-inscripcion-button:focus {
-    outline: none; /* Elimina el borde al hacer clic */
-  }
+.admin-inscripcion-button:focus {
+  outline: none; /* Elimina el borde al hacer clic */
+}
 
+.content-section:nth-child(3) {
+  background-image: url("./Fondo3.jpg"); /* Imagen de fondo para la sección 2 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start; /* Alínea el contenido a la izquierda */
+  align-items: center; /* Alinea el contenido verticalmente */
+  margin: 0; /* Asegura que no haya margen adicional */
+  padding: 0; /* Asegura que no haya relleno adicional */
+  padding-top: 6%;
+}
 
+.Titulo-posicion {
+  color: white;
+  background-color: aqua;
+}

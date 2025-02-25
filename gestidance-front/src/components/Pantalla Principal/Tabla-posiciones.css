@@ -1,0 +1,71 @@
+.contenedor-tablas {
+  display: flex;
+  margin-top: 10%;
+  justify-content: space-around;
+  width: 100%;
+  padding: 20px;
+  background-color: #727272b9;
+}
+
+.dance-ranking-container {
+  background-color: #2a302f;
+  border-radius: 8px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 20%;
+  margin: 20px 10px;
+  justify-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Transiciones suaves */
+}
+
+.dance-ranking-container:hover {
+  transform: translateY(-5px); /* Movimiento ligero hacia arriba */
+}
+
+.category-posicion {
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ranking-table th,
+.ranking-table td {
+  text-align: center;
+  padding: 10px;
+}
+
+.ranking-table th {
+  background-color: #ff9100;
+  text-align: center;
+  color: white;
+}
+
+.ranking-table tr {
+  background-color: #f2f2f2;
+}
+
+.seguir-button {
+  display: block;
+  width: 40%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Transiciones suaves */
+}
+
+.seguir-button:hover {
+  background-color: #7aa57c;
+}

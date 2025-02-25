@@ -1,35 +1,29 @@
 import React, { useState, useEffect } from "react";
-import "./home-page.css"; // Importa el archivo de estilos
-import { useNavigate, useLocation } from "react-router-dom";
+import "./home-page.css";
+import { useNavigate } from "react-router-dom";
 import Contacto from "./Contactanos";
-
+import DanceRanking from "./Tabla-posiciones"; // Asegúrate de que la ruta sea correcta
+import Titulo from "./informacion";
 
 const MensajeInformativo = () => {
   const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(false); // Estado para manejar la visibilidad
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Función que maneja la visibilidad según el scroll
     const handleScroll = () => {
-      const element = document.getElementById("acerca"); // ID del contenedor de la sección
+      const element = document.getElementById("acerca");
       if (element) {
-        const rect = element.getBoundingClientRect(); // Obtiene las dimensiones del contenedor
-        // Verifica si la sección está dentro de la ventana visible
+        const rect = element.getBoundingClientRect();
         if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-          setIsVisible(true); // Aparece el mensaje solo cuando el contenedor es visible
+          setIsVisible(true);
         } else {
-          setIsVisible(false); // Se oculta si el contenedor no es visible
+          setIsVisible(false);
         }
       }
     };
 
-    // Inicializamos el listener de scroll
     window.addEventListener("scroll", handleScroll);
-
-    // Verificamos la visibilidad al cargar la página
     handleScroll();
-
-    // Cleanup al desmontar el componente
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -44,12 +38,6 @@ const MensajeInformativo = () => {
         Es un espacio digital destinado al apoyo hacia grandes empresas para la
         gestión y control de eventos de bailes de cualquier tipo.
       </p>
-      <button
-              onClick={() => handleNavigate("/inscripcion")}
-              className="admin-inscripcion-button"
-            >
-              Inscribete 
-            </button>
     </div>
   );
 };
@@ -57,14 +45,14 @@ const MensajeInformativo = () => {
 const HomePage: React.FC = () => {
   return (
     <div className="home-page-content">
-      {/* Sección 1 */}
       <div className="content-section" id="acerca">
         <MensajeInformativo />
       </div>
-
-      {/* Sección 2 con fondo personalizado */}
       <div className="content-section" id="contacto">
         <Contacto />
+      </div>
+      <div className="content-section" id="posicion">
+        <DanceRanking />
       </div>
     </div>
   );
