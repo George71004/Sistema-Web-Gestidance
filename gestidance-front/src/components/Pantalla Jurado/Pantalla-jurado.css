@@ -1,0 +1,80 @@
+/* Contenedor principal */
+.admin-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh; /* Para que ocupe toda la altura de la pantalla */
+  padding: 20px;
+  overflow: hidden; /* Evita que el fondo se desborde */
+}
+
+/* Capa de fondo desenfocado */
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("./Fondo2.png");
+  background-size: cover; /* Asegura que la imagen cubra toda el área */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  filter: blur(5px); /* Aplica el desenfoque solo a esta capa */
+  z-index: -1; /* Mantén el fondo detrás del contenido */
+}
+
+/* Contenedor del menú (con los botones) */
+.menu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; /* Para que el contenedor se expanda verticalmente */
+  width: 100%;
+  padding-top: 50px;
+}
+
+/* Contenedor de la cuadrícula de botones (2 columnas, 2 filas) */
+.grid-container-admin {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 2 columnas */
+  grid-template-rows: repeat(2, 1fr); /* 2 filas */
+  gap: 20px; /* Espacio entre los botones */
+  align-items: center; /* Para centrar los botones dentro de la celda */
+  margin-top: 3%;
+}
+
+
+/* Estilo de cada botón */
+.grid-item-admin {
+  display: flex;
+  flex-direction: column; /* Cambiar la dirección del flujo a columna */
+  justify-content: center;
+  align-items: center;
+  height: 230px;
+  width: 200px;
+  background-color: #4CAF50; /* Color de fondo */
+  color: white;
+  border-radius: 2px;
+  font-size: 16px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+/* Estilo del ícono */
+.icon {
+  width: 180px; /* Ajusta el tamaño del ícono según sea necesario */
+  height: 180px;
+}
+
+/* Efecto hover */
+.grid-item-admin:hover {
+  transform: translateY(-5px); /* Movimiento ligero hacia arriba */
+  background-color: #e0e0e0; /* Cambio de color en hover */
+}
+
+

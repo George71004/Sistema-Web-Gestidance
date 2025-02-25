@@ -1,0 +1,45 @@
+/* DataTableContainer.css */
+
+.datatable-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Ajusta según sea necesario */
+    max-width: 1200px; /* Ajusta según sea necesario */
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 12%;
+  }
+  
+  .datatable-header {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .datatable-body {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .datatable-body table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .datatable-body th,
+  .datatable-body td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .datatable-body th {
+    background-color: #f4f4f4;
+  }
+  

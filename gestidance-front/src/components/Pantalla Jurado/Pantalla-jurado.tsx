@@ -1,8 +1,7 @@
 import React from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import Cabeza from "./header-admin";
-import Puntos from "./Puntaje";
-import "./Pantalla-admin2.css";
+import { Navigate, useNavigate } from "react-router-dom";
+import Cabeza from "./header-jurado";
+import "./Pantalla-jurado.css";
 //Imagenes
 
 import academiaIcon from "./academia.png"; // Importar la imagen
@@ -13,12 +12,14 @@ import CategoriIcon from "./Categoria.png";
 import PartBaile from "./Part-baile.png";
 import PartAcademia from "./Part-Academia.png";
 
-interface AdminProps {
-  isAuthenticated: boolean;
-}
-
-const Admin: React.FC<AdminProps> = ({ isAuthenticated }) => {
+const Jurado: React.FC = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  // Redirigir al login si no hay token
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
 
   const handleAcademyClick = () => {
     navigate("/admin/inscripcion_academia");
@@ -89,4 +90,4 @@ const Admin: React.FC<AdminProps> = ({ isAuthenticated }) => {
   );
 };
 
-export default Admin;
+export default Jurado;
