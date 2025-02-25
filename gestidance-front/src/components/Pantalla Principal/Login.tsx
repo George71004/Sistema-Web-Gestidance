@@ -19,9 +19,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         password,
       });
 
-      console.log(response.data.message); // Mostrar mensaje de éxito
       localStorage.setItem("token", response.data.token); // Guardar el token
-      alert("¡Login exitoso!");
       onLoginSuccess(); // Llamar a la función de éxito del login
     } catch (err: any) {
       setError(err.response?.data?.message || "Error al iniciar sesión");
